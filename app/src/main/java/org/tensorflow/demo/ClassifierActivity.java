@@ -31,6 +31,8 @@ import android.os.Trace;
 import android.util.Size;
 import android.util.TypedValue;
 import android.view.Display;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 import org.tensorflow.demo.OverlayView.DrawCallback;
@@ -66,7 +68,7 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
 
   private static final String MODEL_FILE = "file:///android_asset/optimized_graph.pb";
   private static final String LABEL_FILE =
-      "file:///android_asset/retained_labels.txt";
+      "file:///android_asset/retrained_labels.txt";
 
   private static final boolean SAVE_PREVIEW_BITMAP = false;
 
@@ -226,10 +228,20 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
           public void run() {
             final long startTime = SystemClock.uptimeMillis();
             final List<Classifier.Recognition> results = classifier.recognizeImage(croppedBitmap);
-            lastProcessingTimeMs = SystemClock.uptimeMillis() - startTime;
+            final List<Classifier.Recognition> resultFinal = new ArrayList<Classifier.Recognition>();
 
-            cropCopyBitmap = Bitmap.createBitmap(croppedBitmap);
-            resultsView.setResults(results);
+            lastProcessingTimeMs = SystemClock.uptimeMillis() - startTime;
+              if(results.size()>1){
+                  for(int i=0;i<results.size();i++){
+                        if(results.get(i).getConfidence()>0.8){
+                            resultFinal.add(results.get(i));
+                        }
+                  }
+              }else{
+                  resultFinal.add(results.get(0));
+              }
+              cropCopyBitmap = Bitmap.createBitmap(croppedBitmap);
+            resultsView.setResults(resultFinal);
             requestRender();
             computing = false;
           }
