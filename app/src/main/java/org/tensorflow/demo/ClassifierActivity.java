@@ -228,20 +228,9 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
           public void run() {
             final long startTime = SystemClock.uptimeMillis();
             final List<Classifier.Recognition> results = classifier.recognizeImage(croppedBitmap);
-            final List<Classifier.Recognition> resultFinal = new ArrayList<Classifier.Recognition>();
-
             lastProcessingTimeMs = SystemClock.uptimeMillis() - startTime;
-              if(results.size()>1){
-                  for(int i=0;i<results.size();i++){
-                        if(results.get(i).getConfidence()>0.8){
-                            resultFinal.add(results.get(i));
-                        }
-                  }
-              }else{
-                  resultFinal.add(results.get(0));
-              }
               cropCopyBitmap = Bitmap.createBitmap(croppedBitmap);
-            resultsView.setResults(resultFinal);
+            resultsView.setResults(results);
             requestRender();
             computing = false;
           }
