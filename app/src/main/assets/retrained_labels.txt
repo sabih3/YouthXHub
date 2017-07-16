@@ -1,3 +1,7 @@
-distributionlab
-gamingarea
+art room
+meetingrooms and classrooms
+multimedia
+library
+disruption lab
 stage
+kitchen

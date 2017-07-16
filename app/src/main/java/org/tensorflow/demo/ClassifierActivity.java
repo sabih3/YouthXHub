@@ -31,6 +31,8 @@ import android.os.Trace;
 import android.util.Size;
 import android.util.TypedValue;
 import android.view.Display;
+import android.widget.TextView;
+
 import java.util.List;
 import java.util.Vector;
 import org.tensorflow.demo.OverlayView.DrawCallback;
@@ -97,6 +99,7 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
   private BorderedText borderedText;
 
   private long lastProcessingTimeMs;
+  private TextView tv_comments;
 
   @Override
   protected int getLayoutId() {
@@ -130,6 +133,8 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
             OUTPUT_NAME);
 
     resultsView = (ResultsView) findViewById(R.id.results);
+    tv_comments = (TextView)findViewById(R.id.comments);
+
     previewWidth = size.getWidth();
     previewHeight = size.getHeight();
 
@@ -226,14 +231,30 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
           public void run() {
             final long startTime = SystemClock.uptimeMillis();
             final List<Classifier.Recognition> results = classifier.recognizeImage(croppedBitmap);
+
             lastProcessingTimeMs = SystemClock.uptimeMillis() - startTime;
 
             cropCopyBitmap = Bitmap.createBitmap(croppedBitmap);
-            resultsView.setResults(results);
+
+            if(results.size() > 0){
+              resultsView.setResults(results);
+
+              runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                  String comment = CommentsHelper.getFeed(ClassifierActivity.this, results.get(0).getTitle());
+                  tv_comments.setText(comment);
+                }
+              });
+
+            }
+
             requestRender();
             computing = false;
           }
         });
+
+
 
     Trace.endSection();
   }

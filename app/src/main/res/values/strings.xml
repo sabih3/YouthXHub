@@ -17,4 +17,24 @@
     <string name="description_info">Info</string>
     <string name="request_permission">This sample needs camera permission.</string>
     <string name="camera_error">This device doesn\'t support Camera2 API.</string>
+    <string name="dummy">Lorem ipsum lorem ipsum \n \n Lorem ipsum lorem ipsum \n \n Lorem Lorem </string>
+
+
+    <string name="feed_stage">"Space where youth come in to pitch ideas showcase talent and organize seminars</string>
+
+    <string name="feed_lab">Create, innovate and implement</string>
+    <string name="feed_lib">Everything to do with literature</string>
+    
+    <string name="feed_studio">Equipped with the latest equipment for multimedia production including studio cameras, mixing facilities green screen and professional soundproofing.</string>
+    
+
+    <string name="feed_workspace">Everyone is welcome to come and \n make use of youthful environment.</string>
+
+    <string name="feed_kitchen">Area to gather to socialize, enjoy food and drinks.</string>
+
+    <string name="feed_meeting">Private breakout rooms for meetings and Sessions on different topics to enhance knowledge and skills.</string>
+
+    <string name="feed_art_room">Young artist are supported to \n create their art and showcase.</string>
+    
+    <string name="feed_gaming">Place for gamers unite and compete.</string>
 </resources>

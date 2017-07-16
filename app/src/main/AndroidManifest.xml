@@ -30,7 +30,7 @@
         android:theme="@style/MaterialTheme">
 
         <activity android:name="org.tensorflow.demo.ClassifierActivity"
-                  android:screenOrientation="portrait"
+                  android:screenOrientation="landscape"
                   android:label="@string/activity_name_classification">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/preview_parent"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <org.tensorflow.demo.RecognitionScoreView
+            android:id="@+id/results"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@android:color/transparent"
+            />
+
+        <org.tensorflow.demo.AutoFitTextureView
+            android:id="@+id/texture"
+            android:layout_width="400dp"
+            android:layout_height="match_parent"
+            android:layout_below="@id/results" />
+    </LinearLayout>
+
+        <TextView
+            android:id="@+id/comments"
+            android:layout_marginTop="50dp"
+            android:layout_width="400dp"
+            android:layout_height="match_parent"
+            android:layout_toEndOf="@id/preview_parent"
+            android:layout_toRightOf="@+id/preview_parent"
+
+            android:textSize="20dp"
+            android:paddingTop="20dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp">
+
+        </TextView>
+        <org.tensorflow.demo.OverlayView
+            android:id="@+id/debug_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone"/>
+
+</RelativeLayout>
