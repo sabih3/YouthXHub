@@ -29,14 +29,16 @@
         android:icon="@drawable/ic_launcher"
         android:theme="@style/MaterialTheme">
 
-        <activity android:name="org.tensorflow.demo.ClassifierActivity"
-                  android:screenOrientation="landscape"
+        <activity android:name="org.tensorflow.demo.SplashActivity"
+                  android:screenOrientation="portrait"
                   android:label="@string/activity_name_classification">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ClassifierActivity"
+            android:screenOrientation="landscape"/>
     </application>
 
 </manifest>
